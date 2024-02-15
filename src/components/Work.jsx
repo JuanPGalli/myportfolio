@@ -7,6 +7,7 @@ import Promanitas from "../assets/promanitas.jpg";
 import Dogs from "../assets/dogs.jpg";
 import Nomadeando from "../assets/nomadeando.jpg";
 import Oddi from "../assets/oddi.jpg";
+import Drivers from "../assets/drivers.png";
 
 function Work() {
   const settings = {
@@ -66,6 +67,12 @@ function Work() {
       title: "ODDI Website",
       link: "https://oddi.es/",
       description: "ReactJS, Tailwind CSS",
+    },
+    {
+      img: Drivers,
+      title: "Drivers API",
+      link: "https://pi-drivers-seven.vercel.app/",
+      description: "JavaScript, NodeJS, Express, PostgreSQL, HTML, CSS, ReactJS ",
     },
   ];
 
