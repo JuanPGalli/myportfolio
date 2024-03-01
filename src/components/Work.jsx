@@ -2,12 +2,13 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Videogames from "../assets/videogames.png";
-import Promanitas from "../assets/promanitas.jpg";
-import Dogs from "../assets/dogs.jpg";
-import Nomadeando from "../assets/nomadeando.jpg";
-import Oddi from "../assets/oddi.jpg";
+// import Videogames from "../assets/videogames.png";
+// import Promanitas from "../assets/promanitas.jpg";
+// import Dogs from "../assets/dogs.jpg";
+// import Nomadeando from "../assets/nomadeando.jpg";
+// import Oddi from "../assets/oddi.jpg";
 import Drivers from "../assets/drivers.png";
+import HelpCommunity from "../assets/helpcommunity.png";
 
 function Work() {
   const settings = {
@@ -35,7 +36,7 @@ function Work() {
   };
 
   const workItems = [
-    {
+    /* {
       img: Nomadeando,
       title: "Nomadeando",
       link: "https://nomadeando.org/",
@@ -67,12 +68,18 @@ function Work() {
       title: "ODDI Website",
       link: "https://oddi.es/",
       description: "ReactJS, Tailwind CSS",
-    },
+    }, */
     {
       img: Drivers,
       title: "Drivers API",
       link: "https://pi-drivers-seven.vercel.app/",
       description: "JavaScript, NodeJS, Express, PostgreSQL, HTML, CSS, ReactJS ",
+    },
+    {
+      img: HelpCommunity,
+      title: "HelpCommunity",
+      link: "https://help-community.vercel.app/",
+      description: "JavaScript, NodeJS, Express, PostgreSQL, ReactJS, Firebase, Cloudinary",
     },
   ];
 
