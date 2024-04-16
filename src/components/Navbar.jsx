@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaBars, FaTimes, FaGithub, FaLinkedin } from "react-icons/fa";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { Link } from "react-scroll";
-//import Logo from "../assets/Logo.png";
+import Logo from "../assets/Logo1.png";
 //import Pdf_file from "../assets/gaby_resume.pdf"
 import Pdf_file from "../assets/JuanPabloGalli.pdf"
 
@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <div name="navbar" className="fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#18434e] text-[#d8ddea]">
       <div>
-        {/* <img src={Logo} alt="Logo" style={{ width: "80px" }} /> */}
+        {<img src={Logo} alt="Logo" style={{ width: "80px" }} />}
       </div>
 
       {/*menu*/}
