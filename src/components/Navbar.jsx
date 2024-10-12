@@ -4,20 +4,20 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 import { Link } from "react-scroll";
 import Logo from "../assets/Logo1.png";
 //import Pdf_file from "../assets/gaby_resume.pdf"
-import Pdf_file from "../assets/JuanPabloGalli.pdf"
+import Pdf_file from "../assets/JuanPabloGalli EN.pdf";
 
 //const {REACT_APP_LINKEDIN_PROFILE, REACT_APP_GITHUB_PROFILE} = process.env
-
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
 
   return (
-    <div name="navbar" className="fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#18434e] text-[#d8ddea]">
-      <div>
-        {<img src={Logo} alt="Logo" style={{ width: "80px" }} />}
-      </div>
+    <div
+      name="navbar"
+      className="fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#18434e] text-[#d8ddea]"
+    >
+      <div>{<img src={Logo} alt="Logo" style={{ width: "80px" }} />}</div>
 
       {/*menu*/}
       <div className="hidden md:flex">
@@ -98,7 +98,8 @@ const Navbar = () => {
               className="flex justify-between items-center w-full text-[#d8ddea]"
               href={
                 //REACT_APP_LINKEDIN_PROFILE
-                "https://www.linkedin.com/in/juan-pablo-galli-rodriguez-20b2876b"}
+                "https://www.linkedin.com/in/juan-pablo-galli-rodriguez-20b2876b"
+              }
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -111,7 +112,8 @@ const Navbar = () => {
               className="flex justify-between items-center w-full text-[#d8ddea]"
               href={
                 //REACT_APP_GITHUB_PROFILE
-                "https://github.com/JuanPGalli"}
+                "https://github.com/JuanPGalli"
+              }
               target="_blank"
               rel="noopener noreferrer"
             >
