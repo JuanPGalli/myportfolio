@@ -3,10 +3,9 @@ import { FaBars, FaTimes, FaGithub, FaLinkedin } from "react-icons/fa";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { Link } from "react-scroll";
 import Logo from "../assets/Logo1.png";
-//import Pdf_file from "../assets/gaby_resume.pdf"
 import Pdf_file from "../assets/JuanPabloGalli EN.pdf";
 
-//const {REACT_APP_LINKEDIN_PROFILE, REACT_APP_GITHUB_PROFILE} = process.env
+const { REACT_APP_LINKEDIN_PROFILE, REACT_APP_GITHUB_PROFILE } = process.env;
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -96,10 +95,7 @@ const Navbar = () => {
           <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300">
             <a
               className="flex justify-between items-center w-full text-[#d8ddea]"
-              href={
-                //REACT_APP_LINKEDIN_PROFILE
-                "https://www.linkedin.com/in/juan-pablo-galli-rodriguez-20b2876b"
-              }
+              href={REACT_APP_LINKEDIN_PROFILE}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -110,10 +106,7 @@ const Navbar = () => {
           <li className="w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300">
             <a
               className="flex justify-between items-center w-full text-[#d8ddea]"
-              href={
-                //REACT_APP_GITHUB_PROFILE
-                "https://github.com/JuanPGalli"
-              }
+              href={REACT_APP_GITHUB_PROFILE}
               target="_blank"
               rel="noopener noreferrer"
             >
