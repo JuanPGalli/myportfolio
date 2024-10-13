@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaBars, FaTimes, FaGithub, FaLinkedin } from "react-icons/fa";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { Link } from "react-scroll";
-import Logo from "../assets/Logo1.png";
+import Logo from "../assets/Logo.png";
 import Pdf_file from "../assets/JuanPabloGalli EN.pdf";
 
 const { REACT_APP_LINKEDIN_PROFILE, REACT_APP_GITHUB_PROFILE } = process.env;
