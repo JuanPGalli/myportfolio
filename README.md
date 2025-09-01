@@ -1,6 +1,6 @@
 # Portfolio
 
-![Portfolio Preview](https://myportfolio-puce-mu.vercel.app/Logo1.png)
+![Portfolio Preview](https://myportfolio-puce-mu.vercel.app/favicon.ico)
 
 This is my personal portfolio website built using ReactJS and TailwindCSS. It showcases my projects, skills, and experience in a visually appealing and interactive manner.
 
