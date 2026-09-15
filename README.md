@@ -1,6 +1,6 @@
 # Portfolio
 
-![Portfolio Preview](https://jpgdev.vercel.app/favicon.ico)
+<img src="https://jpgdev.vercel.app/favicon.ico" alt="Portfolio Preview" width="120">
 
 This is my personal portfolio website built using ReactJS and TailwindCSS. It showcases my projects, skills, and experience in a visually appealing and interactive manner.
 
