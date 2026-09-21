@@ -2,15 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap");
+/* La fuente Raleway se carga desde public/index.html (un @import después de @tailwind es inválido en CSS). */
 
 @layer base {
+  html {
+    /* Evita el flash blanco al hacer overscroll en mobile */
+    background-color: #18434e;
+  }
   body {
-    @apply font-[Raleway];
+    @apply font-sans;
   }
   li {
     @apply px-4;
     @apply cursor-pointer;
+  }
+
+  /* Foco visible para quien navega con teclado */
+  :focus-visible {
+    outline: 2px solid #d8ddea;
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
@@ -27,4 +38,28 @@
     rgba(120, 148, 159, 1),
     hsla(207, 38%, 68%, 1)
   ) !important;
+}
+
+/* Respeta la preferencia "reducir movimiento" del sistema */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Puntos del carrusel: el tema por defecto los pinta de negro y no se ven sobre el fondo oscuro */
+.slick-slider .slick-dots li {
+  padding: 0;
+}
+.slick-slider .slick-dots li button:before {
+  color: #d8ddea;
+  opacity: 0.35;
+}
+.slick-slider .slick-dots li.slick-active button:before {
+  color: #d8ddea;
+  opacity: 1;
 }

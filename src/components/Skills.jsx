@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import JavaScript from '../assets/javascript.png';
 import HTML from '../assets/html.png';
 import CSS from '../assets/css.png';
@@ -6,55 +7,50 @@ import Node from '../assets/node.png';
 import ReactImg from '../assets/react.png';
 import Redux from '../assets/redux.png';
 import PostgreSQL from '../assets/postgresql.png';
-//import Wordpress from "../assets/wordpress_icon.png"
 import Git from '../assets/git.webp';
 
+const SKILLS = [
+  { name: 'JavaScript', icon: JavaScript },
+  { name: 'NodeJS', icon: Node },
+  { name: 'PostgreSQL', icon: PostgreSQL },
+  { name: 'Git', icon: Git },
+  { name: 'HTML', icon: HTML },
+  { name: 'CSS', icon: CSS },
+  { name: 'React', icon: ReactImg },
+  { name: 'Redux', icon: Redux },
+];
+
 function Skills() {
+  const { t } = useLanguage();
+  const skillsTexts = t('skills');
+
   return (
-    <div name='skills' className='w-full h-screen bg-[#18434e] text-[#a1bdd0] pt-40'>
-      {/* Container */}
-      <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full  '>
+    <section
+      id='skills'
+      name='skills'
+      className='w-full min-h-screen bg-[#18434e] text-[#a1bdd0] flex items-center py-16'
+    >
+      <div className='max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full'>
         <div>
-          <p className='text-4xl font-bold inline border-b-4 border-[#d8ddea]'>Skills</p>
-          <p className='py-4 '>These are some of the technologies I've worked with:</p>
+          <h2 className='text-4xl font-bold inline border-b-4 border-[#d8ddea]'>
+            {skillsTexts.title}
+          </h2>
+          <p className='py-4'>{skillsTexts.subtitle}</p>
         </div>
 
-        <div className='w-full grid grid-cols-2 sm:grid-cols-4 gap-4 text-center py-4'>
-          <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-            <img className='w-20 mx-auto' src={JavaScript} alt='JavaScript icon' />
-            <p className='my-4'>JavaScript</p>
-          </div>
-          <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-            <img className='w-20 mx-auto' src={Node} alt='JavaScript icon' />
-            <p className='my-4'>NodeJS</p>
-          </div>
-          <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-            <img className='w-20 mx-auto' src={PostgreSQL} alt='JavaScript icon' />
-            <p className='my-4'>PostgreSQL</p>
-          </div>
-          <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-            <img className='w-20 mx-auto' src={Git} alt='Git icon' />
-            <p className='my-4'>Git</p>
-          </div>
-          <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-            <img className='w-20 mx-auto' src={HTML} alt='JavaScript icon' />
-            <p className='my-4'>HTML</p>
-          </div>
-          <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-            <img className='w-20 mx-auto' src={CSS} alt='JavaScript icon' />
-            <p className='my-4'>CSS</p>
-          </div>
-          <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-            <img className='w-20 mx-auto' src={ReactImg} alt='JavaScript icon' />
-            <p className='my-4'>React</p>
-          </div>
-          <div className='shadow-md shadow-[#040c16] hover:scale-110 duration-500'>
-            <img className='w-20 mx-auto' src={Redux} alt='JavaScript icon' />
-            <p className='my-4'>Redux</p>
-          </div>
-        </div>
+        <ul className='w-full grid grid-cols-2 sm:grid-cols-4 gap-4 text-center py-4'>
+          {SKILLS.map(({ name, icon }) => (
+            <li
+              key={name}
+              className='px-0 cursor-default shadow-md shadow-[#040c16] hover:scale-105 duration-300 py-2'
+            >
+              <img className='w-20 h-20 object-contain mx-auto' src={icon} alt='' />
+              <p className='my-4'>{name}</p>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
+    </section>
   );
 }
 

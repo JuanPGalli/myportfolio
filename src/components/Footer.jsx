@@ -1,11 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 function Footer() {
+  const { t } = useLanguage();
+
   return (
-    <div>
-        <p className='   flex flex-col justify-center items-center bg-[#18434e] text-[#d8ddea] pt-60'>Made by Juan Pablo Galli</p>
-    </div>
-  )
+    <footer className='bg-[#18434e] border-t border-[#11333c] py-8 text-center text-sm text-[#a1bdd0]'>
+      <p>
+        {t('footer').madeBy} Juan Pablo Galli · {new Date().getFullYear()}
+      </p>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;
