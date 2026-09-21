@@ -1,83 +1,96 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useState } from 'react';
 
-const FORWARD = "forward";
-const BACKWARD = "backward";
+const SEPARATOR = '\u0000';
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  typeof window.matchMedia === 'function' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-export const useTypingText = (words, keySpeed = 3000, maxPauseAmount = 10) => {
-  const [wordIndex, setWordIndex] = useState(0);
-  const [currentWord, setCurrentWord] = useState(words[wordIndex].split(""));
-  const [isStopped, setIsStopped] = useState(false);
-  const direction = useRef(BACKWARD);
-  const typingInterval = useRef();
-  const letterIndex = useRef();
+/**
+ * Efecto máquina de escribir.
+ *
+ * @param {string | string[]} input  Frase (o lista de frases) a escribir.
+ * @param {object}  [options]
+ * @param {number}  [options.typeSpeed=70]     ms entre letras al escribir.
+ * @param {number}  [options.deleteSpeed=35]   ms entre letras al borrar.
+ * @param {number}  [options.pause=2200]       ms de pausa con la frase completa.
+ * @param {boolean} [options.loop=false]       Si es true borra y repite; si es false
+ *                                             escribe una vez y se queda.
+ * @returns {string} el texto acumulado hasta el momento.
+ *
+ * Las letras se acumulan con `slice(0, n)` sobre un contador local del efecto,
+ * así que no dependen de estado viejo ni de que el componente se re-renderice.
+ * El efecto sólo se reinicia cuando cambia el CONTENIDO del texto (por ejemplo
+ * al cambiar de idioma), no cuando cambia la identidad del array.
+ */
+export const useTypingText = (
+  input,
+  { typeSpeed = 70, deleteSpeed = 35, pause = 2200, loop = false } = {},
+) => {
+  const [text, setText] = useState('');
 
-  const stop = () => {
-    clearInterval(typingInterval.current);
-    setIsStopped(true);
-  };
+  // Clave estable: dos arrays con el mismo contenido producen la misma clave.
+  const key = (Array.isArray(input) ? input : [input]).filter(Boolean).join(SEPARATOR);
 
   useEffect(() => {
-    // Start at 0
-    let pauseCounter = 0;
+    const phrases = key ? key.split(SEPARATOR) : [];
 
-    if (isStopped) return;
+    if (phrases.length === 0) {
+      setText('');
+      return undefined;
+    }
 
-    const typeLetter = () => {
-      if (letterIndex.current >= words[wordIndex].length) {
-        direction.current = BACKWARD;
+    // Accesibilidad: sin animación si el usuario lo pidió en su sistema.
+    if (prefersReducedMotion()) {
+      setText(phrases[0]);
+      return undefined;
+    }
 
-        // Begin pause by setting the maxPauseAmount prop equal to the counter
-        pauseCounter = maxPauseAmount;
+    let phraseIndex = 0;
+    let charCount = 0;
+    let deleting = false;
+    let timer;
+
+    setText('');
+
+    const tick = () => {
+      const current = phrases[phraseIndex];
+
+      if (!deleting) {
+        charCount += 1;
+        setText(current.slice(0, charCount));
+
+        if (charCount < current.length) {
+          timer = setTimeout(tick, typeSpeed);
+          return;
+        }
+
+        // Frase completa: si no hay loop y era la última, terminamos acá.
+        if (!loop && phraseIndex === phrases.length - 1) return;
+
+        deleting = true;
+        timer = setTimeout(tick, pause);
         return;
       }
 
-      const segment = words[wordIndex].split("");
-      setCurrentWord(currentWord.concat(segment[letterIndex.current]));
-      letterIndex.current = letterIndex.current + 1;
-    };
+      charCount -= 1;
+      setText(current.slice(0, charCount));
 
-    const backspace = () => {
-      if (letterIndex.current === 0) {
-        const isOnLastWord = wordIndex === words.length - 1;
-
-        setWordIndex(!isOnLastWord ? wordIndex + 1 : 0);
-        direction.current = FORWARD;
-
+      if (charCount > 0) {
+        timer = setTimeout(tick, deleteSpeed);
         return;
       }
 
-      const segment = currentWord.slice(0, currentWord.length - 1);
-      setCurrentWord(segment);
-      letterIndex.current = currentWord.length - 1;
+      deleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      timer = setTimeout(tick, typeSpeed * 4);
     };
 
-    typingInterval.current = setInterval(() => {
-      // Wait until counter hits 0 to do any further action
-      if (pauseCounter > 0) {
-        pauseCounter = pauseCounter - 1;
-        return;
-      }
+    timer = setTimeout(tick, typeSpeed * 4);
 
-      if (direction.current === FORWARD) {
-        typeLetter();
-      } else {
-        backspace();
-      }
-    }, keySpeed);
+    return () => clearTimeout(timer);
+  }, [key, typeSpeed, deleteSpeed, pause, loop]);
 
-    return () => {
-      clearInterval(typingInterval.current);
-    };
-  }, [currentWord, wordIndex, keySpeed, words, maxPauseAmount, isStopped]);
-
-  return {
-    word: (
-      <span className={`word ${currentWord.length ? "full" : "empty"}`}>
-        <span>{currentWord.length ? currentWord.join("") : "|" }</span>
-      </span>
-    ),
-    start: () => setIsStopped(false),
-    stop
-  };
+  return text;
 };
