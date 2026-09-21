@@ -1,37 +1,81 @@
-import React, { useRef } from 'react';
+import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const { REACT_APP_GET_FORM_IO } = process.env;
 
+const fieldClass =
+  'w-full rounded-md bg-[#d8ddea] p-3 text-[#18434e] placeholder:text-[#4a6670] focus:bg-white transition-colors';
+
 function Contact() {
-  const formRef = useRef(null);
+  const { t } = useLanguage();
+  const contactTexts = t('contact');
 
-  const handleSubmit = () => {
-    setTimeout(() => {
-      formRef.current.reset();
-    }, 500);
-    formRef.current.submit();
-  };
-
+  // Envío nativo a getform.io (POST). Antes, un handler llamaba form.submit() y salteaba la
+  // validación del navegador (se podían mandar formularios vacíos); ahora se validan los campos.
   return (
-    <div name='contact' className='w-full md:h-screen bg-[#18434e] flex justify-center items-center p-4 pt-40 '>
-      {/* I used getform.io to send emails from my contact form */}
+    <section
+      id='contact'
+      name='contact'
+      className='w-full min-h-screen bg-[#18434e] flex justify-center items-center px-4 py-16'
+    >
       <form
-        ref={formRef}
-        method="POST"
+        method='POST'
         action={REACT_APP_GET_FORM_IO}
-        className='flex flex-col max-w-[600px] w-full pt-20'
-        onSubmit={handleSubmit}
+        className='flex flex-col max-w-[600px] w-full'
       >
         <div className='pb-4'>
-          <p className='text-4xl font-bold inline border-b-4 text-[#a1bdd0] border-[#d8ddea]'>Contact</p>
-          <p className='text-[#a1bdd0] py-4'>Submit the form</p>
+          <h2 className='text-4xl font-bold inline border-b-4 text-[#a1bdd0] border-[#d8ddea]'>
+            {contactTexts.title}
+          </h2>
+          <p className='text-[#a1bdd0] py-4'>{contactTexts.subtitle}</p>
         </div>
-        <input className='bg-[#d8ddea] p-2' type='text' placeholder='Name' name='name'></input>
-        <input className='my-4 p-2 bg-[#d8ddea]' type='email' placeholder='Email' name='email' ></input>
-        <textarea className='bg-[#d8ddea] p-2' name='message' rows="10" placeholder='Message'></textarea>
-        <button className="text-[#d8ddea] group border-2 px-4 py-3 my-8 mx-auto flex items-center hover:bg-[#78949f] hover:border-[#78949f]">Send message</button>
+
+        <label htmlFor='contact-name' className='sr-only'>
+          {contactTexts.name}
+        </label>
+        <input
+          id='contact-name'
+          className={fieldClass}
+          type='text'
+          name='name'
+          autoComplete='name'
+          placeholder={contactTexts.name}
+          required
+        />
+
+        <label htmlFor='contact-email' className='sr-only'>
+          {contactTexts.email}
+        </label>
+        <input
+          id='contact-email'
+          className={`my-4 ${fieldClass}`}
+          type='email'
+          name='email'
+          autoComplete='email'
+          placeholder={contactTexts.email}
+          required
+        />
+
+        <label htmlFor='contact-message' className='sr-only'>
+          {contactTexts.message}
+        </label>
+        <textarea
+          id='contact-message'
+          className={fieldClass}
+          name='message'
+          rows='8'
+          placeholder={contactTexts.message}
+          required
+        ></textarea>
+
+        <button
+          type='submit'
+          className='text-[#d8ddea] border-2 border-[#d8ddea] rounded-md px-6 py-3 my-8 mx-auto flex items-center font-semibold hover:bg-[#d8ddea] hover:text-[#18434e] transition-colors duration-300'
+        >
+          {contactTexts.send}
+        </button>
       </form>
-    </div>
+    </section>
   );
 }
 

@@ -7,8 +7,9 @@ const About = () => {
 
   return (
     <section
+      id='about'
       name='about'
-      className='w-full min-h-screen bg-[#18434e] text-[#a1bdd0] flex items-center'
+      className='w-full min-h-screen bg-[#18434e] text-[#a1bdd0] flex items-center py-16'
     >
       <div className='flex flex-col justify-center items-center w-full max-w-[1000px] mx-auto p-4'>
         <div className='w-full grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8'>
@@ -20,7 +21,7 @@ const About = () => {
           <div></div>
         </div>
         <div className='w-full grid sm:grid-cols-2 gap-8 px-4'>
-          <div className='sm:text-right text-3xl font-bold text-[#d8ddea] leading-tight'>
+          <div className='sm:text-right text-2xl sm:text-3xl font-bold text-[#d8ddea] leading-tight'>
             <h3>{aboutTexts.headline}</h3>
           </div>
           <div className='text-base leading-relaxed flex flex-col gap-4 text-[#a1bdd0]'>
