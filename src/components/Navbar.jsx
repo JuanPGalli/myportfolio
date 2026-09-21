@@ -1,132 +1,114 @@
 import React, { useState } from 'react';
-import { FaBars, FaTimes, FaGithub, FaLinkedin } from 'react-icons/fa';
-import { BsFillPersonLinesFill } from 'react-icons/bs';
-import { Link } from 'react-scroll';
-import Logo from '../assets/Logo.png';
-import Pdf_file from '../assets/Juan_Pablo_Galli_EN.pdf';
-
-const { REACT_APP_LINKEDIN_PROFILE, REACT_APP_GITHUB_PROFILE } = process.env;
+import { FaBars, ReactFaTimes, FaTimes } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const handleClick = () => setNav(!nav);
+  const { setLanguage, t } = useLanguage();
+  const navTexts = t('nav');
+
+  const handleNavClick = () => setNav(!nav);
 
   return (
-    <div
-      name='navbar'
-      className='fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#18434e] text-[#d8ddea]'
-    >
-      <div>{<img src={Logo} alt='Logo' style={{ width: '70px' }} />}</div>
-
-      {/*menu*/}
-      <div className='hidden md:flex'>
-        <ul className='hidden md:flex'>
-          <li>
-            <Link to='home' smooth={true} duration={500}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to='about' smooth={true} duration={500}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to='skills' smooth={true} duration={500}>
-              Skills
-            </Link>
-          </li>
-          <li>
-            <Link to='work' smooth={true} duration={500}>
-              Work
-            </Link>
-          </li>
-          <li>
-            <Link to='contact' smooth={true} duration={500}>
-              Contact
-            </Link>
-          </li>
-        </ul>
+    <nav className='fixed w-full h-[80px] flex justify-between items-center px-4 bg-[#18434e] text-[#a1bdd0] z-50 border-b border-[#11333c]'>
+      <div>
+        <h1 className='text-2xl font-bold font-mono text-[#d8ddea]'>JPG</h1>
       </div>
 
-      {/*bars for */}
-      <div onClick={handleClick} className='md:hidden z-10'>
+      {/* Menu Desktop */}
+      <ul className='hidden md:flex items-center gap-6'>
+        <li className='hover:text-[#d8ddea] cursor-pointer font-medium transition-colors'>
+          {navTexts.home}
+        </li>
+        <li className='hover:text-[#d8ddea] cursor-pointer font-medium transition-colors'>
+          {navTexts.about}
+        </li>
+        <li className='hover:text-[#d8ddea] cursor-pointer font-medium transition-colors'>
+          {navTexts.work}
+        </li>
+        <li className='hover:text-[#d8ddea] cursor-pointer font-medium transition-colors'>
+          {navTexts.contact}
+        </li>
+
+        {/* Selector de idiomas Desktop */}
+        <div className='flex gap-2 border-l border-[#3a5d66] pl-4 ml-2'>
+          <button
+            onClick={() => setLanguage('en')}
+            title='English (US)'
+            className='hover:scale-125 transition-transform duration-150 text-xl'
+          >
+            🇺🇸
+          </button>
+          <button
+            onClick={() => setLanguage('es')}
+            title='Español (AR)'
+            className='hover:scale-125 transition-transform duration-150 text-xl'
+          >
+            🇦🇷
+          </button>
+          <button
+            onClick={() => setLanguage('br')}
+            title='Português (BR)'
+            className='hover:scale-125 transition-transform duration-150 text-xl'
+          >
+            🇧🇷
+          </button>
+        </div>
+      </ul>
+
+      {/* Hamburguesa Mobile */}
+      <div
+        onClick={handleNavClick}
+        className='md:hidden z-10 cursor-pointer text-xl text-[#d8ddea]'
+      >
         {!nav ? <FaBars /> : <FaTimes />}
       </div>
 
-      {/*Mobile menu*/}
+      {/* Menu Mobile */}
       <ul
         className={
           !nav
             ? 'hidden'
-            : 'absolute top-0 left-0 w-full h-screen bg-[#18434e] flex flex-col justify-center items-center'
+            : 'absolute top-0 left-0 w-full h-screen bg-[#18434e] flex flex-col justify-center items-center gap-6 text-2xl'
         }
       >
-        <li className='py-6 text-4xl'>
-          <Link onClick={handleClick} to='home' smooth={true} duration={500}>
-            Home
-          </Link>
-        </li>
-        <li className='py-6 text-4xl'>
-          <Link onClick={handleClick} to='about' smooth={true} duration={500}>
-            About
-          </Link>
-        </li>
-        <li className='py-6 text-4xl'>
-          <Link onClick={handleClick} to='skills' smooth={true} duration={500}>
-            Skills
-          </Link>
-        </li>
-        <li className='py-6 text-4xl'>
-          <Link onClick={handleClick} to='work' smooth={true} duration={500}>
-            Work
-          </Link>
-        </li>
-        <li className='py-6 text-4xl'>
-          <Link onClick={handleClick} to='contact' smooth={true} duration={500}>
-            Contact
-          </Link>
-        </li>
+        <li className='hover:text-[#d8ddea] cursor-pointer'>{navTexts.home}</li>
+        <li className='hover:text-[#d8ddea] cursor-pointer'>{navTexts.about}</li>
+        <li className='hover:text-[#d8ddea] cursor-pointer'>{navTexts.work}</li>
+        <li className='hover:text-[#d8ddea] cursor-pointer'>{navTexts.contact}</li>
+
+        {/* Selector de idiomas Mobile */}
+        <div className='flex gap-6 mt-8 pt-6 border-t border-[#3a5d66] w-1/2 justify-center'>
+          <button
+            onClick={() => {
+              setLanguage('en');
+              setNav(false);
+            }}
+            className='text-3xl active:scale-95'
+          >
+            🇺🇸
+          </button>
+          <button
+            onClick={() => {
+              setLanguage('es');
+              setNav(false);
+            }}
+            className='text-3xl active:scale-95'
+          >
+            🇦🇷
+          </button>
+          <button
+            onClick={() => {
+              setLanguage('br');
+              setNav(false);
+            }}
+            className='text-3xl active:scale-95'
+          >
+            🇧🇷
+          </button>
+        </div>
       </ul>
-
-      {/*Social icons*/}
-      <div className='hidden md:flex fixed flex-col top-[35%] left-0'>
-        <ul>
-          <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300'>
-            <a
-              className='flex justify-between items-center w-full text-[#d8ddea]'
-              href={REACT_APP_LINKEDIN_PROFILE}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              LinkedIn <FaLinkedin size={30} />
-            </a>
-          </li>
-
-          <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300'>
-            <a
-              className='flex justify-between items-center w-full text-[#d8ddea]'
-              href={REACT_APP_GITHUB_PROFILE}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              GitHub <FaGithub size={30} />
-            </a>
-          </li>
-
-          <li className='w-[160px] h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300'>
-            <a
-              className='flex justify-between items-center w-full text-[#d8ddea]'
-              href={Pdf_file}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Resume <BsFillPersonLinesFill size={30} />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    </nav>
   );
 };
 
