@@ -1,7 +1,18 @@
 export const translations = {
   en: {
-    nav: { home: 'Home', about: 'About', work: 'Work', skills: 'Skills', contact: 'Contact' },
+    nav: {
+      home: 'Home',
+      about: 'About',
+      work: 'Work',
+      skills: 'Skills',
+      contact: 'Contact',
+      language: 'Language',
+      menuOpen: 'Open menu',
+      menuClose: 'Close menu',
+      social: 'Social links',
+    },
     home: {
+      welcome: 'Welcome to my space',
       title: "Hi, I'm Juan Pablo Galli",
       subtitle: 'Full Stack Developer & Public Accountant',
       desc: 'I specialize in building secure financial logic, high-converting digital assets, and robust backend architectures that scale businesses.',
@@ -26,6 +37,21 @@ export const translations = {
           'High-performance landing page optimized for lead generation, maximum conversion rates, and digital presence visibility.',
       },
     },
+    sidebar: { resume: 'Resume' },
+    skills: {
+      title: 'Skills',
+      subtitle: "These are some of the technologies I've worked with:",
+    },
+    contact: {
+      title: 'Contact',
+      subtitle: 'Send me a message and I will get back to you.',
+      name: 'Name',
+      email: 'Email',
+      message: 'Message',
+      send: 'Send message',
+    },
+    footer: { madeBy: 'Made by' },
+    whatsapp: { label: 'Chat on WhatsApp' },
   },
   es: {
     nav: {
@@ -34,8 +60,13 @@ export const translations = {
       work: 'Proyectos',
       skills: 'Habilidades',
       contact: 'Contacto',
+      language: 'Idioma',
+      menuOpen: 'Abrir menú',
+      menuClose: 'Cerrar menú',
+      social: 'Redes y CV',
     },
     home: {
+      welcome: 'Bienvenido a mi espacio',
       title: 'Hola, soy Juan Pablo Galli',
       subtitle: 'Desarrollador Full Stack & Contador Público',
       desc: 'Especializado en diseñar lógica financiera segura, activos digitales de alta conversión y arquitecturas backend robustas que hacen crecer negocios.',
@@ -60,6 +91,21 @@ export const translations = {
           'Página de aterrizaje de alto rendimiento optimizada para la captación de clientes y máxima conversión digital.',
       },
     },
+    sidebar: { resume: 'Currículum' },
+    skills: {
+      title: 'Habilidades',
+      subtitle: 'Estas son algunas de las tecnologías con las que he trabajado:',
+    },
+    contact: {
+      title: 'Contacto',
+      subtitle: 'Envíame un mensaje y te responderé a la brevedad.',
+      name: 'Nombre',
+      email: 'Correo electrónico',
+      message: 'Mensaje',
+      send: 'Enviar mensaje',
+    },
+    footer: { madeBy: 'Hecho por' },
+    whatsapp: { label: 'Chatear por WhatsApp' },
   },
   br: {
     nav: {
@@ -68,8 +114,13 @@ export const translations = {
       work: 'Portfólio',
       skills: 'Habilidades',
       contact: 'Contato',
+      language: 'Idioma',
+      menuOpen: 'Abrir menu',
+      menuClose: 'Fechar menu',
+      social: 'Redes e currículo',
     },
     home: {
+      welcome: 'Bem-vindo ao meu espaço',
       title: 'Olá, sou o Juan Pablo Galli',
       subtitle: 'Desenvolvedor Full Stack & Contador Público',
       desc: 'Especializado na construção de lógica financeira segura, ativos digitais de alta conversão e arquiteturas backend robustas que impulsionam negócios.',
@@ -94,5 +145,20 @@ export const translations = {
           'Landing page de alta performance otimizada para captação de clientes e máxima conversão digital.',
       },
     },
+    sidebar: { resume: 'Currículo' },
+    skills: {
+      title: 'Habilidades',
+      subtitle: 'Estas são algumas das tecnologias com as quais já trabalhei:',
+    },
+    contact: {
+      title: 'Contato',
+      subtitle: 'Envie uma mensagem e responderei o mais breve possível.',
+      name: 'Nome',
+      email: 'E-mail',
+      message: 'Mensagem',
+      send: 'Enviar mensagem',
+    },
+    footer: { madeBy: 'Feito por' },
+    whatsapp: { label: 'Conversar no WhatsApp' },
   },
 };
