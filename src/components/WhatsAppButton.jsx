@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -26,9 +25,9 @@ const WhatsAppButton = () => {
       rel='noopener noreferrer'
       aria-label={t('whatsapp').label}
       title={t('whatsapp').label}
-      className='fixed bottom-5 right-5 z-40 flex items-center justify-center rounded-full bg-[#25D366] p-3.5 text-white shadow-xl transition duration-300 hover:scale-110 hover:bg-[#20ba5a] sm:bottom-6 sm:right-6 sm:p-4'
+      className='fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition duration-300 hover:scale-110 hover:bg-[#20ba5a] sm:bottom-6 sm:right-6'
     >
-      <FaWhatsapp size={30} />
+      <FaWhatsapp size={26} />
     </a>
   );
 };
