@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ShopFlow from '../assets/shopflow.webp';
 import MariaMartaGalli from '../assets/mariamartagalli.webp';
-import ThePetShop from '../assets/thepetshop&thepetcare.webp';
+import ThePetShop from '../assets/thepetshop.webp';
 
 function Work() {
   const { t } = useLanguage();
@@ -77,7 +77,9 @@ function Work() {
                   {/* Mobile/tablet: el detalle va debajo de la imagen, siempre visible (no hay hover en touch).
                       Desktop: se muestra encima de la imagen al pasar el mouse o al enfocar con teclado. */}
                   <div className='flex flex-col items-center p-5 text-center bg-[#11333c] md:absolute md:inset-0 md:justify-center md:bg-[#18434e]/95 md:p-6 md:opacity-0 md:transition-opacity md:duration-300 md:group-hover:opacity-100 md:group-focus-within:opacity-100'>
-                    <h3 className='text-xl md:text-2xl font-bold text-[#d8ddea] mb-2'>{item.title}</h3>
+                    <h3 className='text-xl md:text-2xl font-bold text-[#d8ddea] mb-2'>
+                      {item.title}
+                    </h3>
                     <p className='text-sm text-[#a1bdd0] font-medium mb-3'>{item.description}</p>
                     <span className='text-xs text-[#d8ddea] bg-[#0b262d] md:bg-[#11333c] px-3 py-1 rounded-full font-mono mb-5'>
                       {item.tech}
