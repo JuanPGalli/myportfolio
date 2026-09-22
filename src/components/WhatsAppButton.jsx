@@ -15,7 +15,7 @@ const WhatsAppButton = () => {
   const { language, t } = useLanguage();
 
   const message = encodeURIComponent(MESSAGES[language] || MESSAGES.en);
-  // Antes era `https://wa.me{encodedMessage}` (sin número ni interpolación): el link no funcionaba.
+
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 
   return (
@@ -25,9 +25,9 @@ const WhatsAppButton = () => {
       rel='noopener noreferrer'
       aria-label={t('whatsapp').label}
       title={t('whatsapp').label}
-      className='fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition duration-300 hover:scale-110 hover:bg-[#20ba5a] sm:bottom-6 sm:right-6'
+      className='fixed bottom-5 right-5 z-40 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition duration-300 hover:scale-110 hover:bg-[#20ba5a] sm:bottom-8 sm:right-8 sm:h-[72px] sm:w-[72px]'
     >
-      <FaWhatsapp size={26} />
+      <FaWhatsapp className='h-9 w-9 sm:h-11 sm:w-11' />
     </a>
   );
 };
