@@ -1,7 +1,16 @@
 import React from 'react';
+import { HiOutlineMail } from 'react-icons/hi';
+import { FaRegCalendarAlt } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
 
-const { REACT_APP_GET_FORM_IO } = process.env;
+const {
+  REACT_APP_GET_FORM_IO,
+  REACT_APP_CONTACT_EMAIL,
+  REACT_APP_CALENDLY_URL,
+} = process.env;
+
+const CONTACT_EMAIL = REACT_APP_CONTACT_EMAIL || 'jpgallir@gmail.com';
+const CALENDLY_URL = REACT_APP_CALENDLY_URL || 'https://calendly.com/jpgallir/meeting-with-juan';
 
 const fieldClass =
   'w-full rounded-md bg-[#d8ddea] p-3 text-[#18434e] placeholder:text-[#4a6670] focus:bg-white transition-colors';
@@ -74,6 +83,29 @@ function Contact() {
         >
           {contactTexts.send}
         </button>
+
+        <div className='flex items-center gap-4 text-[#4a6670] my-2'>
+          <span className='flex-1 h-px bg-[#3a5d66]' />
+          <span className='text-xs uppercase tracking-wide text-[#a1bdd0]'>{contactTexts.or}</span>
+          <span className='flex-1 h-px bg-[#3a5d66]' />
+        </div>
+
+        <div className='flex flex-col sm:flex-row justify-center gap-4 mt-4'>
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className='flex items-center justify-center gap-2 text-sm text-[#a1bdd0] hover:text-[#d8ddea] transition-colors duration-200'
+          >
+            <HiOutlineMail size={18} /> {contactTexts.emailMe}
+          </a>
+          <a
+            href={CALENDLY_URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='flex items-center justify-center gap-2 text-sm text-[#a1bdd0] hover:text-[#d8ddea] transition-colors duration-200'
+          >
+            <FaRegCalendarAlt size={16} /> {contactTexts.bookCall}
+          </a>
+        </div>
       </form>
     </section>
   );
