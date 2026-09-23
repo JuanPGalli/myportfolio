@@ -5,17 +5,17 @@ import { Link } from 'react-scroll';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import Logo from '../assets/Logo.png';
-import Pdf_file from '../assets/Juan_Pablo_Galli_EN.pdf';
+import resumeFiles from '../assets/resumeFiles';
 
 const { REACT_APP_LINKEDIN_PROFILE, REACT_APP_GITHUB_PROFILE } = process.env;
 
 // Alto de la barra fija: los links scrollean con este offset para no quedar tapados.
 const NAV_HEIGHT = 80;
-const SECTIONS = ['home', 'about', 'skills', 'work', 'contact'];
+const SECTIONS = ['home', 'about', 'skills', 'resume', 'work', 'contact'];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navTexts = t('nav');
   const resumeLabel = t('sidebar').resume;
 
@@ -155,7 +155,7 @@ const Navbar = () => {
           </li>
           <li className='px-0'>
             <a
-              href={Pdf_file}
+              href={resumeFiles[language]}
               target='_blank'
               rel='noopener noreferrer'
               aria-label={resumeLabel}

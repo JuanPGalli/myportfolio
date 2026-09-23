@@ -2,6 +2,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import Skills from './components/Skills';
+import Resume from './components/Resume';
 import Work from './components/Work';
 import Contact from './components/Contact';
 import SocialSidebar from './components/SocialSidebar';
@@ -16,6 +17,7 @@ function App() {
         <Home />
         <About />
         <Skills />
+        <Resume />
         <Work />
         <Contact />
       </main>
