@@ -1,31 +1,81 @@
-# Portfolio
+# Juan Pablo Galli — Portfolio
 
-<img src="https://jpgdev.vercel.app/favicon.ico" alt="Portfolio Preview" width="120">
+**Live site:** [juanpablogalli.com](https://juanpablogalli.com/)
 
-This is my personal portfolio website built using ReactJS and TailwindCSS. It showcases my projects, skills, and experience in a visually appealing and interactive manner.
+<img src="https://juanpablogalli.com/Logo.png" alt="Juan Pablo Galli logo" width="110">
+
+Personal portfolio of **Juan Pablo Galli**, Full Stack Developer (React · Node.js · Express · PostgreSQL) and Certified Public Accountant transitioning from 16+ years in banking, auditing and corporate finance into FinTech-focused software development.
+
+Built as a single-page React app, fully responsive and available in **English, Spanish and Portuguese**.
 
 ## Features
 
-- **Responsive Design:** The portfolio is optimized for various devices and screen sizes, ensuring a seamless experience for visitors on desktop, tablets, and mobile devices.
-- **Project Showcase:** Highlight your best projects and provide details such as project descriptions, technologies used, and live demo links.
-- **Skills and Expertise:** Display your skills and areas of expertise using visually appealing icons or badges. You can categorize your skills into different sections, such as programming languages, frameworks, tools, and more.
-- **About Me Section:** Share a brief introduction about yourself, your background, and your passion for software development or any other relevant information.
-- **Contact Form:** You can configure the contact form so anyone who wants to work with you, can contact you directly.
-- **Responsive Resume/CV:** Include a downloadable PDF version of your resume or CV, allowing visitors to view and download your professional profile.
-- **Customization:** The portfolio is highly customizable, allowing you to personalize the colors, layout, and content to align with your branding or preferences.
+- **EN / ES / PT-BR language switcher** — each language represented by a country flag (USA, Argentina, Brazil) instead of generic icons, backed by a `LanguageContext` + `react-scroll` for anchored navigation with active-link highlighting.
+- **Animated hero headline** — custom `useTypingText` hook (no external typing library) that respects `prefers-reduced-motion`.
+- **Projects carousel** — built with `react-slick`, showcasing live deployed projects with tech stack and live-demo links.
+- **Contact form** — native HTML validation, submits to [Getform](https://getform.io/) via `REACT_APP_GET_FORM_IO`.
+- **WhatsApp CTA** — floating button with a pre-filled, localized message per language.
+- **Social sidebar** — LinkedIn, GitHub and downloadable résumé (PDF).
+- **Accessibility** — visible focus states, `aria-label`s on icon-only controls, reduced-motion support.
+- **Analytics** — Google Analytics (GA4) via `gtag.js`.
 
-## Technologies Used
+## Tech Stack
 
-- **ReactJS:** A popular JavaScript library for building user interfaces, providing a modular and reusable component-based architecture.
-- **TailwindCSS:** A highly customizable CSS framework that provides a utility-first approach for designing responsive and modern user interfaces.
+| Layer | Tools |
+|---|---|
+| Core | React 18, Create React App (`react-scripts`) |
+| Styling | Tailwind CSS |
+| Routing/Scroll | `react-scroll` |
+| Carousel | `react-slick` / `slick-carousel` |
+| Icons & Flags | `react-icons`, `country-flag-icons` |
+| Forms | Getform (no backend needed) |
+| Deploy | Vercel |
+| Analytics | Google Analytics 4 |
 
-## Usage
+## Getting Started
 
-To use or modify this portfolio for your own needs, follow these steps:
+```bash
+git clone https://github.com/JuanPGalli/myportfolio.git
+cd myportfolio
+npm install
+```
 
-1. Clone this repository to your local machine.
-2. Install the required dependencies using `npm install` or `yarn install`.
-3. Customize the portfolio by updating the content, adding your own projects, and modifying the styles as desired.
-4. Run the development server using `npm start` or `yarn start`.
-5. Access the portfolio in your web browser at `http://localhost:3000`.
+Create a `.env` file in the project root (never committed — see `.gitignore`):
 
+```bash
+REACT_APP_LINKEDIN_PROFILE=https://www.linkedin.com/in/juan-pablo-galli-rodriguez
+REACT_APP_GITHUB_PROFILE=https://github.com/JuanPGalli
+REACT_APP_GET_FORM_IO=https://getform.io/f/your-form-id
+# optional — defaults to the number set in WhatsAppButton.jsx
+REACT_APP_WHATSAPP_NUMBER=5521995282826
+```
+
+Run it locally:
+
+```bash
+npm start        # http://localhost:3000
+npm run build     # production build in /build
+```
+
+## Project Structure
+
+```
+src/
+├── assets/            # images, icons, résumé PDF
+├── components/        # Navbar, Home, About, Skills, Work, Contact, Footer, ...
+├── context/            # LanguageContext.jsx + translations.js (i18n dictionary)
+├── hooks/               # useTypingText
+└── App.js
+```
+
+## SEO
+
+The `public/` folder ships a `robots.txt` and `sitemap.xml`. If you deploy this under your own domain, update every URL in `sitemap.xml` and the `og:*` / canonical tags in `public/index.html` to match, then resubmit the sitemap in [Google Search Console](https://search.google.com/search-console).
+
+## License
+
+Personal project — feel free to fork it for inspiration, but please don't reuse the content or résumé as your own.
+
+## Contact
+
+Juan Pablo Galli — [LinkedIn](https://www.linkedin.com/in/juan-pablo-galli-rodriguez) · [GitHub](https://github.com/JuanPGalli)
